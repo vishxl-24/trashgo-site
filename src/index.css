@@ -17,26 +17,55 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Eco-Tech Primary Colors */
+    --primary: 142 76% 36%;
+    --primary-foreground: 0 0% 98%;
+    --primary-light: 142 56% 56%;
+    --primary-dark: 142 86% 26%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Tech Blue Accents */
+    --secondary: 217 91% 60%;
+    --secondary-foreground: 0 0% 98%;
+    --secondary-light: 217 71% 80%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 142 56% 56%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 142 76% 36%;
 
-    --radius: 0.5rem;
+    /* Custom Design Tokens */
+    --eco-green: 142 76% 36%;
+    --eco-green-light: 142 56% 56%;
+    --eco-green-dark: 142 86% 26%;
+    --tech-blue: 217 91% 60%;
+    --tech-blue-light: 217 71% 80%;
+    --success-green: 120 60% 50%;
+    --warning-orange: 38 92% 50%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--eco-green)) 0%, hsl(var(--tech-blue)) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(142 20% 98%) 100%);
+    --gradient-feature: linear-gradient(135deg, hsl(var(--eco-green-light) / 0.1) 0%, hsl(var(--tech-blue) / 0.1) 100%);
+
+    /* Shadows */
+    --shadow-soft: 0 4px 6px -1px hsl(var(--eco-green) / 0.1), 0 2px 4px -1px hsl(var(--eco-green) / 0.06);
+    --shadow-medium: 0 10px 15px -3px hsl(var(--eco-green) / 0.1), 0 4px 6px -2px hsl(var(--eco-green) / 0.05);
+    --shadow-large: 0 25px 50px -12px hsl(var(--eco-green) / 0.25);
+    --shadow-glow: 0 0 20px hsl(var(--eco-green) / 0.3);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -102,4 +131,72 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@layer components {
+  /* Hero Button Variants */
+  .btn-hero {
+    @apply bg-[var(--gradient-hero)] text-white font-semibold px-8 py-4 rounded-2xl;
+    @apply shadow-[var(--shadow-medium)] hover:shadow-[var(--shadow-large)];
+    @apply transition-[var(--transition-smooth)] hover:scale-105;
+  }
+
+  .btn-hero-outline {
+    @apply border-2 border-primary bg-transparent text-primary font-semibold px-8 py-4 rounded-2xl;
+    @apply hover:bg-primary hover:text-primary-foreground;
+    @apply transition-[var(--transition-smooth)] hover:scale-105;
+  }
+
+  /* Feature Cards */
+  .feature-card {
+    @apply bg-[var(--gradient-card)] border border-border rounded-3xl p-8;
+    @apply shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-medium)];
+    @apply transition-[var(--transition-smooth)] hover:scale-105;
+  }
+
+  /* Section Backgrounds */
+  .section-gradient {
+    @apply bg-[var(--gradient-feature)];
+  }
+
+  /* Floating Animation */
+  .float-animation {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Glow Effect */
+  .glow-effect {
+    @apply shadow-[var(--shadow-glow)];
+  }
+
+  /* Stats Counter */
+  .stats-card {
+    @apply bg-white/80 backdrop-blur-sm border border-border rounded-2xl p-6;
+    @apply shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-medium)];
+    @apply transition-[var(--transition-smooth)];
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
 }

@@ -26,11 +26,14 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					foreground: 'hsl(var(--primary-foreground))',
+					light: 'hsl(var(--primary-light))',
+					dark: 'hsl(var(--primary-dark))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
-					foreground: 'hsl(var(--secondary-foreground))'
+					foreground: 'hsl(var(--secondary-foreground))',
+					light: 'hsl(var(--secondary-light))'
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
@@ -61,7 +64,19 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Eco-Tech Colors
+				'eco-green': {
+					DEFAULT: 'hsl(var(--eco-green))',
+					light: 'hsl(var(--eco-green-light))',
+					dark: 'hsl(var(--eco-green-dark))'
+				},
+				'tech-blue': {
+					DEFAULT: 'hsl(var(--tech-blue))',
+					light: 'hsl(var(--tech-blue-light))'
+				},
+				success: 'hsl(var(--success-green))',
+				warning: 'hsl(var(--warning-orange))'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

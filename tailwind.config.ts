@@ -65,15 +65,20 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Eco-Tech Colors
+				// TrashGo Brand Colors
 				'eco-green': {
 					DEFAULT: 'hsl(var(--eco-green))',
 					light: 'hsl(var(--eco-green-light))',
 					dark: 'hsl(var(--eco-green-dark))'
 				},
-				'tech-blue': {
-					DEFAULT: 'hsl(var(--tech-blue))',
-					light: 'hsl(var(--tech-blue-light))'
+				'soft-blue': {
+					DEFAULT: 'hsl(var(--soft-blue))'
+				},
+				'cool-gray': {
+					DEFAULT: 'hsl(var(--cool-gray))'
+				},
+				'light-yellow': {
+					DEFAULT: 'hsl(var(--light-yellow))'
 				},
 				success: 'hsl(var(--success-green))',
 				warning: 'hsl(var(--warning-orange))'

@@ -17,22 +17,22 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    /* Eco-Tech Primary Colors */
-    --primary: 142 76% 36%;
-    --primary-foreground: 0 0% 98%;
-    --primary-light: 142 56% 56%;
-    --primary-dark: 142 86% 26%;
+    /* TrashGo Brand Colors - Google Green/Eco Green Primary */
+    --primary: 142 75% 45%;  /* #34A853 - Google Green */
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 142 65% 65%;
+    --primary-dark: 142 85% 35%;
 
-    /* Tech Blue Accents */
-    --secondary: 217 91% 60%;
-    --secondary-foreground: 0 0% 98%;
-    --secondary-light: 217 71% 80%;
+    /* Cool Gray & Soft Blue Accents */
+    --secondary: 210 20% 95%;  /* Cool Gray */
+    --secondary-foreground: 210 20% 20%;
+    --secondary-light: 210 15% 98%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 142 56% 56%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 204 86% 53%;  /* Soft Blue */
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
@@ -41,19 +41,21 @@ All colors MUST be HSL.
     --input: 214.3 31.8% 91.4%;
     --ring: 142 76% 36%;
 
-    /* Custom Design Tokens */
-    --eco-green: 142 76% 36%;
-    --eco-green-light: 142 56% 56%;
-    --eco-green-dark: 142 86% 26%;
-    --tech-blue: 217 91% 60%;
-    --tech-blue-light: 217 71% 80%;
-    --success-green: 120 60% 50%;
+    /* TrashGo Brand Tokens */
+    --eco-green: 142 75% 45%;  /* #34A853 */
+    --eco-green-light: 142 65% 65%;
+    --eco-green-dark: 142 85% 35%;
+    --soft-blue: 204 86% 53%;
+    --cool-gray: 210 20% 95%;
+    --light-yellow: 48 100% 80%;  /* Light Yellow accent */
+    --success-green: 142 75% 45%;
     --warning-orange: 38 92% 50%;
 
-    /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(var(--eco-green)) 0%, hsl(var(--tech-blue)) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(142 20% 98%) 100%);
-    --gradient-feature: linear-gradient(135deg, hsl(var(--eco-green-light) / 0.1) 0%, hsl(var(--tech-blue) / 0.1) 100%);
+    /* Modern Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--eco-green)) 0%, hsl(var(--soft-blue)) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(var(--cool-gray)) 100%);
+    --gradient-feature: linear-gradient(135deg, hsl(var(--eco-green) / 0.1) 0%, hsl(var(--soft-blue) / 0.1) 100%);
+    --gradient-section: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(var(--cool-gray)) 100%);
 
     /* Shadows */
     --shadow-soft: 0 4px 6px -1px hsl(var(--eco-green) / 0.1), 0 2px 4px -1px hsl(var(--eco-green) / 0.06);

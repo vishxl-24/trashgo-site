@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { 
@@ -23,12 +24,22 @@ import {
   ChevronUp
 } from "lucide-react";
 import heroImage from "@/assets/hero-bg.jpg";
-import { useState, useEffect } from "react";
+import trashgoLogo from "@/assets/trashgo-logo.jpg";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useState } from "react";
 
 const Index = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
 
   useEffect(() => {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-out-cubic',
+      once: true,
+      offset: 100,
+    });
+
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > 400);
     };
@@ -93,88 +104,100 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b z-50">
+      <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b z-50">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <div className="text-2xl font-bold text-primary">TrashGo</div>
-            <div className="hidden md:flex items-center space-x-8">
-              <a href="#about" className="hover:text-primary transition-colors">About</a>
-              <a href="#features" className="hover:text-primary transition-colors">Features</a>
-              <a href="#tech" className="hover:text-primary transition-colors">Technology</a>
-              <a href="#impact" className="hover:text-primary transition-colors">Impact</a>
-              <a href="#download" className="hover:text-primary transition-colors">Download</a>
+            <div className="flex items-center space-x-3">
+              <img src={trashgoLogo} alt="TrashGo Logo" className="w-10 h-10 rounded-lg object-cover" />
+              <span className="text-2xl font-bold text-primary">TrashGo</span>
             </div>
+            <div className="hidden md:flex items-center space-x-8">
+              <a href="#about" className="text-muted-foreground hover:text-primary transition-colors font-medium">About</a>
+              <a href="#features" className="text-muted-foreground hover:text-primary transition-colors font-medium">How It Works</a>
+              <a href="#tech" className="text-muted-foreground hover:text-primary transition-colors font-medium">Technology</a>
+              <a href="#impact" className="text-muted-foreground hover:text-primary transition-colors font-medium">Impact</a>
+              <a href="#download" className="text-muted-foreground hover:text-primary transition-colors font-medium">Download</a>
+            </div>
+            <Button className="bg-primary hover:bg-primary-dark text-primary-foreground px-6 py-2 rounded-xl font-semibold transition-all hover:scale-105">
+              Download APK
+            </Button>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-20 pb-16 overflow-hidden">
+      <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${heroImage})` }}
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/80 to-secondary/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20"></div>
         </div>
         
-        <div className="relative container mx-auto px-6 py-20">
-          <div className="max-w-4xl mx-auto text-center text-white">
-            <div className="animate-fade-in-up">
-              <h1 className="text-6xl md:text-7xl font-bold mb-6 leading-tight">
+        <div className="relative container mx-auto px-6 text-center">
+          <div className="max-w-5xl mx-auto">
+            <div data-aos="fade-up" className="mb-8">
+              <img src={trashgoLogo} alt="TrashGo" className="w-24 h-24 mx-auto mb-6 rounded-2xl shadow-lg" />
+              <h1 className="text-6xl md:text-8xl font-bold text-primary mb-6 leading-tight">
                 TrashGo
               </h1>
-              <p className="text-2xl md:text-3xl mb-4 font-medium">
-                Track. Collect. Recycle. Reward.
-              </p>
-              <p className="text-xl mb-12 opacity-90 max-w-3xl mx-auto">
-                Technology-driven urban waste management system that connects citizens, collectors, and smart infrastructure for a cleaner, more sustainable future.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                <Button className="btn-hero group">
-                  <Download className="mr-2 h-5 w-5" />
-                  Download APK
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-                <Button variant="outline" className="btn-hero-outline group">
-                  <ExternalLink className="mr-2 h-5 w-5" />
-                  Watch Demo
-                </Button>
-              </div>
+            </div>
+            <p data-aos="fade-up" data-aos-delay="200" className="text-2xl md:text-3xl text-accent font-semibold mb-6">
+              Track. Collect. Recycle. Reward.
+            </p>
+            <p data-aos="fade-up" data-aos-delay="400" className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
+              Technology-driven urban waste management system that transforms how cities handle waste collection and recycling.
+            </p>
+            
+            <div data-aos="fade-up" data-aos-delay="600" className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              <Button className="bg-primary hover:bg-primary-dark text-primary-foreground text-xl px-12 py-6 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-105 group">
+                <Download className="mr-3 h-6 w-6" />
+                Download APK
+                <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform" />
+              </Button>
+              <Button variant="outline" className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground text-xl px-12 py-6 rounded-2xl font-semibold transition-all hover:scale-105 group">
+                <ExternalLink className="mr-3 h-6 w-6" />
+                Watch Demo
+              </Button>
             </div>
           </div>
         </div>
         
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-primary animate-bounce">
           <ArrowDown className="h-6 w-6" />
         </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 section-gradient">
+      <section id="about" className="min-h-screen flex items-center py-20 bg-gradient-to-br from-background to-secondary/30">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-foreground">About TrashGo</h2>
-            <p className="text-xl text-muted-foreground mb-8">
+          <div className="max-w-4xl mx-auto text-center mb-20" data-aos="fade-up">
+            <h2 className="text-5xl md:text-6xl font-bold text-primary mb-8">About TrashGo</h2>
+            <p className="text-2xl text-muted-foreground mb-8 leading-relaxed">
               Urban waste management faces critical challenges with inefficient collection routes, 
               overflowing bins, and lack of citizen engagement. TrashGo bridges the gap between 
               technology and sustainability.
             </p>
-            <p className="text-2xl font-semibold text-primary">
+            <p className="text-3xl font-semibold text-accent">
               "Technology-driven urban waste management system."
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {features.map((feature, index) => (
-              <Card key={index} className="feature-card text-center">
+              <Card 
+                key={index} 
+                className="bg-white/80 backdrop-blur-sm border border-border rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all hover:scale-105 text-center" 
+                data-aos="fade-up" 
+                data-aos-delay={index * 100}
+              >
                 <div className="mb-6">
-                  <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto glow-effect">
+                  <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto shadow-lg">
                     <feature.icon className="h-8 w-8 text-primary-foreground" />
                   </div>
                 </div>
-                <h3 className="text-xl font-semibold mb-4">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.description}</p>
+                <h3 className="text-2xl font-bold text-primary mb-4">{feature.title}</h3>
+                <p className="text-lg text-muted-foreground">{feature.description}</p>
               </Card>
             ))}
           </div>
@@ -182,27 +205,27 @@ const Index = () => {
       </section>
 
       {/* How It Works */}
-      <section id="features" className="py-20 bg-background">
+      <section id="features" className="min-h-screen flex items-center py-20 bg-gradient-to-br from-secondary/10 to-background">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8">How It Works</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <div className="text-center mb-20" data-aos="fade-up">
+            <h2 className="text-5xl md:text-6xl font-bold text-primary mb-8">How It Works</h2>
+            <p className="text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
               A seamless workflow that connects every stakeholder in the waste management ecosystem
             </p>
           </div>
 
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-5 gap-8">
               {workflow.map((item, index) => (
-                <div key={index} className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-6 text-white font-bold text-xl float-animation">
+                <div key={index} className="text-center relative" data-aos="fade-up" data-aos-delay={index * 150}>
+                  <div className="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-6 text-white font-bold text-2xl shadow-lg hover:scale-110 transition-transform">
                     {item.step}
                   </div>
-                  <h3 className="text-lg font-semibold mb-3">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{item.description}</p>
+                  <h3 className="text-xl font-bold text-primary mb-3">{item.title}</h3>
+                  <p className="text-muted-foreground">{item.description}</p>
                   {index < workflow.length - 1 && (
-                    <div className="hidden md:block absolute top-8 left-1/2 w-full">
-                      <ArrowRight className="h-6 w-6 text-primary mx-auto" />
+                    <div className="hidden md:block absolute top-10 left-full w-8 -ml-4">
+                      <ArrowRight className="h-6 w-6 text-primary" />
                     </div>
                   )}
                 </div>
@@ -213,25 +236,30 @@ const Index = () => {
       </section>
 
       {/* Tech Stack */}
-      <section id="tech" className="py-20 section-gradient">
+      <section id="tech" className="min-h-screen flex items-center py-20 bg-gradient-to-br from-background to-secondary/20">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8">Tech Stack</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <div className="text-center mb-20" data-aos="fade-up">
+            <h2 className="text-5xl md:text-6xl font-bold text-primary mb-8">Tech Stack</h2>
+            <p className="text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
               Powered by cutting-edge technologies for scalable and efficient waste management
             </p>
           </div>
 
           <div className="grid md:grid-cols-5 gap-8 max-w-6xl mx-auto">
             {techStack.map((tech, index) => (
-              <Card key={index} className="feature-card text-center group hover:scale-105">
+              <Card 
+                key={index} 
+                className="bg-white/80 backdrop-blur-sm border border-border rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all hover:scale-105 text-center group" 
+                data-aos="fade-up" 
+                data-aos-delay={index * 100}
+              >
                 <div className="mb-6">
-                  <div className="w-16 h-16 bg-secondary rounded-2xl flex items-center justify-center mx-auto group-hover:glow-effect transition-all">
-                    <tech.icon className="h-8 w-8 text-secondary-foreground" />
+                  <div className="w-16 h-16 bg-accent rounded-2xl flex items-center justify-center mx-auto shadow-lg group-hover:bg-primary transition-colors">
+                    <tech.icon className="h-8 w-8 text-accent-foreground group-hover:text-primary-foreground transition-colors" />
                   </div>
                 </div>
-                <h3 className="text-lg font-semibold mb-3">{tech.name}</h3>
-                <p className="text-sm text-muted-foreground">{tech.description}</p>
+                <h3 className="text-xl font-bold text-primary mb-3">{tech.name}</h3>
+                <p className="text-muted-foreground">{tech.description}</p>
               </Card>
             ))}
           </div>
@@ -239,51 +267,51 @@ const Index = () => {
       </section>
 
       {/* Smart Bin Innovation */}
-      <section className="py-20 bg-background">
+      <section className="min-h-screen flex items-center py-20 bg-gradient-to-br from-secondary/10 to-background">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-8">Smart Bin Innovation</h2>
-                <div className="space-y-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-8 h-8 bg-success rounded-full flex items-center justify-center flex-shrink-0">
-                      <Wifi className="h-4 w-4 text-white" />
+              <div data-aos="fade-right">
+                <h2 className="text-5xl md:text-6xl font-bold text-primary mb-12">Smart Bin Innovation</h2>
+                <div className="space-y-8">
+                  <div className="flex items-start space-x-6">
+                    <div className="w-12 h-12 bg-success rounded-full flex items-center justify-center flex-shrink-0 shadow-lg">
+                      <Wifi className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold mb-2">Automatic Waste Detection</h3>
-                      <p className="text-muted-foreground">IoT sensors automatically detect waste types and fill levels in real-time.</p>
+                      <h3 className="text-2xl font-bold text-primary mb-3">Automatic Waste Detection</h3>
+                      <p className="text-lg text-muted-foreground">IoT sensors automatically detect waste types and fill levels in real-time.</p>
                     </div>
                   </div>
                   
-                  <div className="flex items-start space-x-4">
-                    <div className="w-8 h-8 bg-warning rounded-full flex items-center justify-center flex-shrink-0">
-                      <Recycle className="h-4 w-4 text-white" />
+                  <div className="flex items-start space-x-6">
+                    <div className="w-12 h-12 bg-warning rounded-full flex items-center justify-center flex-shrink-0 shadow-lg">
+                      <Recycle className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold mb-2">Smart Sorting System</h3>
-                      <p className="text-muted-foreground">Advanced sorting for metal, plastic, and organic waste with 95% accuracy.</p>
+                      <h3 className="text-2xl font-bold text-primary mb-3">Smart Sorting System</h3>
+                      <p className="text-lg text-muted-foreground">Advanced sorting for metal, plastic, and organic waste with 95% accuracy.</p>
                     </div>
                   </div>
                   
-                  <div className="flex items-start space-x-4">
-                    <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                      <DollarSign className="h-4 w-4 text-white" />
+                  <div className="flex items-start space-x-6">
+                    <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0 shadow-lg">
+                      <DollarSign className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold mb-2">Circular Economy Rewards</h3>
-                      <p className="text-muted-foreground">Earn cashback and points for proper waste disposal, creating a sustainable incentive system.</p>
+                      <h3 className="text-2xl font-bold text-primary mb-3">Circular Economy Rewards</h3>
+                      <p className="text-lg text-muted-foreground">Earn cashback and points for proper waste disposal, creating a sustainable incentive system.</p>
                     </div>
                   </div>
                 </div>
               </div>
               
-              <div className="relative">
-                <div className="w-96 h-96 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-3xl flex items-center justify-center mx-auto">
+              <div className="relative" data-aos="fade-left">
+                <div className="w-96 h-96 bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl flex items-center justify-center mx-auto shadow-xl">
                   <div className="text-center">
-                    <Brain className="h-32 w-32 text-primary mx-auto mb-4" />
-                    <p className="text-lg font-semibold">Smart Bin Mockup</p>
-                    <p className="text-sm text-muted-foreground">IoT-Enabled Waste Sorting</p>
+                    <Brain className="h-32 w-32 text-primary mx-auto mb-6" />
+                    <p className="text-2xl font-bold text-primary mb-2">Smart Bin Mockup</p>
+                    <p className="text-lg text-muted-foreground">IoT-Enabled Waste Sorting</p>
                   </div>
                 </div>
               </div>
@@ -293,29 +321,34 @@ const Index = () => {
       </section>
 
       {/* Impact Section */}
-      <section id="impact" className="py-20 section-gradient">
+      <section id="impact" className="min-h-screen flex items-center py-20 bg-gradient-to-br from-background to-secondary/30">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8">Environmental Impact</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <div className="text-center mb-20" data-aos="fade-up">
+            <h2 className="text-5xl md:text-6xl font-bold text-primary mb-8">Environmental Impact</h2>
+            <p className="text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
               Creating measurable positive change in urban waste management and environmental sustainability
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
             {stats.map((stat, index) => (
-              <Card key={index} className="stats-card text-center">
-                <div className="mb-4">
-                  <stat.icon className="h-12 w-12 text-primary mx-auto" />
+              <Card 
+                key={index} 
+                className="bg-white/90 backdrop-blur-sm border border-border rounded-3xl p-12 shadow-lg hover:shadow-xl transition-all hover:scale-105 text-center" 
+                data-aos="fade-up" 
+                data-aos-delay={index * 200}
+              >
+                <div className="mb-6">
+                  <stat.icon className="h-16 w-16 text-primary mx-auto" />
                 </div>
-                <div className="text-4xl font-bold text-primary mb-2">{stat.number}</div>
-                <div className="text-muted-foreground font-medium">{stat.label}</div>
+                <div className="text-5xl font-bold text-primary mb-4">{stat.number}</div>
+                <div className="text-xl text-muted-foreground font-semibold">{stat.label}</div>
               </Card>
             ))}
           </div>
 
-          <div className="text-center">
-            <p className="text-lg text-muted-foreground max-w-4xl mx-auto">
+          <div className="text-center" data-aos="fade-up" data-aos-delay="600">
+            <p className="text-xl text-muted-foreground max-w-5xl mx-auto leading-relaxed">
               By connecting technology with environmental responsibility, TrashGo is building a cleaner, 
               more sustainable future for urban communities worldwide. Join thousands of citizens already 
               making a difference in their neighborhoods.
@@ -325,30 +358,32 @@ const Index = () => {
       </section>
 
       {/* Download Section */}
-      <section id="download" className="py-20 bg-background">
+      <section id="download" className="min-h-screen flex items-center py-20 bg-gradient-to-br from-primary/5 to-accent/5">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8">Ready to Get Started?</h2>
-            <p className="text-xl text-muted-foreground mb-12">
-              Download TrashGo today and become part of the smart waste management revolution
-            </p>
+            <div data-aos="fade-up">
+              <h2 className="text-5xl md:text-6xl font-bold text-primary mb-8">Ready to Get Started?</h2>
+              <p className="text-2xl text-muted-foreground mb-16 leading-relaxed">
+                Download TrashGo today and become part of the smart waste management revolution
+              </p>
+            </div>
             
-            <div className="space-y-8">
-              <Button className="btn-hero text-xl px-12 py-6">
-                <Download className="mr-3 h-6 w-6" />
+            <div className="space-y-12" data-aos="fade-up" data-aos-delay="200">
+              <Button className="bg-primary hover:bg-primary-dark text-primary-foreground text-2xl px-16 py-8 rounded-3xl font-bold shadow-xl hover:shadow-2xl transition-all hover:scale-105">
+                <Download className="mr-4 h-8 w-8" />
                 Download TrashGo APK
               </Button>
               
-              <div className="flex items-center justify-center space-x-4 text-muted-foreground">
-                <Smartphone className="h-5 w-5" />
+              <div className="flex items-center justify-center space-x-4 text-muted-foreground text-lg">
+                <Smartphone className="h-6 w-6" />
                 <span>Compatible with Android devices</span>
               </div>
               
-              <div className="border-2 border-dashed border-border rounded-lg p-8">
-                <div className="w-32 h-32 bg-muted rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <span className="text-muted-foreground text-sm">QR Code</span>
+              <div className="border-2 border-dashed border-primary/30 rounded-3xl p-12">
+                <div className="w-40 h-40 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <span className="text-primary text-lg font-semibold">QR Code</span>
                 </div>
-                <p className="text-sm text-muted-foreground">Scan to download instantly</p>
+                <p className="text-lg text-muted-foreground font-medium">Scan to download instantly</p>
               </div>
             </div>
           </div>
@@ -356,52 +391,51 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-foreground text-background py-16">
+      <footer className="bg-primary text-primary-foreground py-20">
         <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-12">
+          <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
             <div>
-              <h3 className="text-2xl font-bold mb-6">TrashGo</h3>
-              <p className="text-background/80 mb-6">
+              <div className="flex items-center space-x-3 mb-6">
+                <img src={trashgoLogo} alt="TrashGo" className="w-12 h-12 rounded-lg" />
+                <h3 className="text-3xl font-bold">TrashGo</h3>
+              </div>
+              <p className="text-primary-foreground/80 mb-8 text-lg leading-relaxed">
                 Smart waste management for sustainable urban futures. 
                 Track. Collect. Recycle. Reward.
               </p>
               <div className="flex space-x-4">
-                <Button variant="ghost" size="icon" className="text-background hover:bg-background/10">
-                  <Mail className="h-5 w-5" />
+                <Button variant="ghost" size="icon" className="text-primary-foreground hover:bg-primary-foreground/10 rounded-xl">
+                  <Mail className="h-6 w-6" />
                 </Button>
-                <Button variant="ghost" size="icon" className="text-background hover:bg-background/10">
-                  <Github className="h-5 w-5" />
+                <Button variant="ghost" size="icon" className="text-primary-foreground hover:bg-primary-foreground/10 rounded-xl">
+                  <Github className="h-6 w-6" />
                 </Button>
-                <Button variant="ghost" size="icon" className="text-background hover:bg-background/10">
-                  <Linkedin className="h-5 w-5" />
+                <Button variant="ghost" size="icon" className="text-primary-foreground hover:bg-primary-foreground/10 rounded-xl">
+                  <Linkedin className="h-6 w-6" />
                 </Button>
               </div>
             </div>
             
             <div>
-              <h4 className="text-lg font-semibold mb-6">Quick Links</h4>
-              <div className="space-y-3">
-                <a href="#about" className="block text-background/80 hover:text-background transition-colors">About</a>
-                <a href="#features" className="block text-background/80 hover:text-background transition-colors">Features</a>
-                <a href="#tech" className="block text-background/80 hover:text-background transition-colors">Technology</a>
-                <a href="#impact" className="block text-background/80 hover:text-background transition-colors">Impact</a>
+              <h4 className="text-xl font-bold mb-8">Quick Links</h4>
+              <div className="space-y-4">
+                <a href="#about" className="block text-primary-foreground/80 hover:text-primary-foreground transition-colors text-lg">About</a>
+                <a href="#features" className="block text-primary-foreground/80 hover:text-primary-foreground transition-colors text-lg">How It Works</a>
+                <a href="#tech" className="block text-primary-foreground/80 hover:text-primary-foreground transition-colors text-lg">Technology</a>
+                <a href="#impact" className="block text-primary-foreground/80 hover:text-primary-foreground transition-colors text-lg">Impact</a>
               </div>
             </div>
             
             <div>
-              <h4 className="text-lg font-semibold mb-6">Contact</h4>
-              <div className="space-y-3 text-background/80">
+              <h4 className="text-xl font-bold mb-8">Contact</h4>
+              <div className="space-y-4 text-primary-foreground/80 text-lg">
                 <p>Get in touch for partnerships</p>
-                <p>or technical inquiries</p>
-                <Button variant="ghost" className="text-background hover:bg-background/10 p-0 h-auto font-normal">
-                  hello@trashgo.app
-                </Button>
+                <p>team@trashgo.app</p>
+                <p className="text-sm mt-8 pt-8 border-t border-primary-foreground/20">
+                  © 2024 TrashGo. MIT License.
+                </p>
               </div>
             </div>
-          </div>
-          
-          <div className="border-t border-background/20 mt-12 pt-8 text-center text-background/60">
-            <p>&copy; 2024 TrashGo. Licensed under MIT License.</p>
           </div>
         </div>
       </footer>
@@ -410,7 +444,7 @@ const Index = () => {
       {showBackToTop && (
         <Button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-primary hover:bg-primary-dark shadow-lg z-50"
+          className="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-primary hover:bg-primary-dark text-primary-foreground shadow-lg hover:shadow-xl transition-all hover:scale-110"
           size="icon"
         >
           <ChevronUp className="h-6 w-6" />
